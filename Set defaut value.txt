@@ -1,0 +1,19 @@
+1 . Creeate UsersTablesSeeder (php artisan make:seeder UsersTablesSeeder)
+	-use App\User;
+	 DB::table('users')->delete();
+        User::create([
+            'name'      => 'admin',
+            'email'     => 'admin@gmail.com',
+            'password'  => Hash::make('password'),
+        ]);
+2 . Into DatabaseSeeder.php
+	-use Illuminate\Database\Eloquent\Model;
+	- public function run(){
+        Eloquent::unguard();
+        $this->call(UsersTablesSeeder::class);
+    }
+	-run commant :
+		-php artisan migrate:fresh
+		-php artisan db:seed
+3 . If it has error "something done't exist":
+	-composer dump-autoload
